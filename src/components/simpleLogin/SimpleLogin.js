@@ -5,7 +5,7 @@ import axios from 'axios';
 class SimpleLogin extends React.Component {
     state = { show: false }
 
-    signUp = () => {
+    componentDidMount() {
         const payload = {
             client_id: "c8H3deTPmbO1jbgtnNFmU1kzF8hxg0Fn",
             client_secret: "8rMz44oEk1TWfwua",
@@ -13,7 +13,7 @@ class SimpleLogin extends React.Component {
             scope: "https://api.equifax.com/business/luminate/v1/"
         };
         axios.post("https://api.equifax.com/v1/oauth/token", payload).then(res => {
-            console.log(res.data); 
+            console.log(res.data);
         });
     }
 
