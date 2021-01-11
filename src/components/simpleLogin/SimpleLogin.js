@@ -6,15 +6,25 @@ class SimpleLogin extends React.Component {
     state = { show: false }
 
     componentDidMount() {
-        var bodyFormData = new FormData();
+        const bodyFormData = new URLSearchParams()
         bodyFormData.append('client_id', 'c8H3deTPmbO1jbgtnNFmU1kzF8hxg0Fn');
         bodyFormData.append('client_secret', '8rMz44oEk1TWfwua');
         bodyFormData.append('grant_type', 'client_credentials');
         bodyFormData.append('scope', 'https://api.equifax.com/business/luminate/v1/');
 
-        axios.post("https://api.equifax.com/v1/oauth/token", bodyFormData).then(res => {
-            console.log(res.data);
-        });
+        const config = {
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        }
+
+        axios.post("https://api.equifax.com/v1/oauth/token", bodyFormData, config)
+            .then((result) => {
+                console.log(result);
+            })
+            .catch((err) => {
+                console.log(err);
+            })
     }
 
     render() {
