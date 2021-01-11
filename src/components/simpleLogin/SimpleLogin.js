@@ -13,7 +13,7 @@ class SimpleLogin extends React.Component {
             scope: "https://api.equifax.com/business/luminate/v1/"
         };
         axios.post("https://api.equifax.com/v1/oauth/token", payload).then(res => {
-            console.log(res.data);
+            console.log(res.data); 
         });
     }
 
