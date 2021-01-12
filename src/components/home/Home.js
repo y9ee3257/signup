@@ -35,7 +35,7 @@ class Home extends React.Component {
             }
         }
         const payload = {
-            "id": "EID_MD7999",
+            "id": Math.floor(Math.random() * Math.floor(5)),
             "application": {
                 "applicationSource": "I",
                 "primaryApplicant": {
@@ -84,7 +84,7 @@ class Home extends React.Component {
             <div>
                 <nav class="navbar navbar-expand-lg fixed-top home">
                     <div class="container">
-                        <a class="navbar-brand" href="#"><img class="logo" style={{ maxWidth: "120px", marginTop: "-15px" }} src="imgs/logo.png" /></a>
+                        <a class="navbar-brand" href="#"><img class="logo" style={{ maxWidth: "160px"}} src="imgs/logo.png" /></a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
                             <svg class="" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" width="30" height="30" focusable="false"><title>Menu</title><path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" d="M4 7h22M4 15h22M4 23h22"></path></svg>
                         </button>
