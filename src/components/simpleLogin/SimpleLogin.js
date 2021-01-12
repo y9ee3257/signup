@@ -3,28 +3,14 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import axios from 'axios';
 
 class SimpleLogin extends React.Component {
-    state = { show: false }
+    state = { show: false, form: {} }
 
-    componentDidMount() {
-        const bodyFormData = new URLSearchParams()
-        bodyFormData.append('client_id', 'c8H3deTPmbO1jbgtnNFmU1kzF8hxg0Fn');
-        bodyFormData.append('client_secret', '8rMz44oEk1TWfwua');
-        bodyFormData.append('grant_type', 'client_credentials');
-        bodyFormData.append('scope', 'https://api.equifax.com/business/luminate/v1/');
-
-        const config = {
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            }
-        }
-
-        axios.post("https://api.equifax.com/v1/oauth/token", bodyFormData, config)
-            .then((result) => {
-                console.log(result);
-            })
-            .catch((err) => {
-                console.log(err);
-            })
+    changeForm = (field, event) => {
+        const form = { ...this.state.form };
+        form[field] = event ? event.target.value : undefined;
+        this.setState({
+            form: form
+        })
     }
 
     render() {
@@ -36,29 +22,29 @@ class SimpleLogin extends React.Component {
                         <div class="form-group row">
                             <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Name</label>
                             <div class="col-sm-5">
-                                <input type="text" class="form-control form-control-sm" placeholder="First Name" />
+                                <input type="text" class="form-control form-control-sm" placeholder="First Name" onChange={this.changeForm.bind(this, 'firstName')} />
                             </div>
                             <div class="col-sm-5">
-                                <input type="text" class="form-control form-control-sm" placeholder="Last Name" />
+                                <input type="text" class="form-control form-control-sm" placeholder="Last Name" onChange={this.changeForm.bind(this, 'lastName')} />
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Email</label>
+                            <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm" >Email</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control form-control-sm" placeholder="Email" />
+                                <input type="text" class="form-control form-control-sm" placeholder="Email" onChange={this.changeForm.bind(this, 'email')} />
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Password</label>
                             <div class="col-sm-10">
-                                <input type="password" class="form-control form-control-sm" placeholder="******" />
+                                <input type="password" class="form-control form-control-sm" placeholder="******" onChange={this.changeForm.bind(this, 'password')} />
                             </div>
                         </div>
                     </form>
                 </ModalBody>
                 <ModalFooter>
                     <Button color="secondary" onClick={this.props.toggle}>Cancel</Button>
-                    <Button color="primary" onClick={this.props.onSubmit}>SignUp</Button>
+                    <Button color="primary" onClick={this.props.onSubmit.bind(this, this.state.form)}>SignUp</Button>
                 </ModalFooter>
             </Modal>
         )
