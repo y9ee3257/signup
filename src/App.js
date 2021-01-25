@@ -15,7 +15,7 @@ class App extends React.Component {
           <Route exact path="/">
             <Home />
           </Route>
-          <Route exact path="/login">
+          <Route exact path="/demoapp">
             <Home />
           </Route>
         </Switch>
